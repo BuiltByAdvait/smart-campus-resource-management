@@ -4,9 +4,9 @@ $search = $_GET['search'] ?? '';
 $department = $_GET['department'] ?? '';
 $sort = $_GET['sort'] ?? 'name';
 
-
-// Load student controller
 $students = require_once __DIR__ . '/../../../CONTROL/controllers/student_controller.php';
+
+$currentPage = 'students';
 
 ?>
 
@@ -21,229 +21,307 @@ $students = require_once __DIR__ . '/../../../CONTROL/controllers/student_contro
 
     <title>Students - Smart Campus</title>
 
-    <style>
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #f5f7fa;
-        }
-
-        h1 {
-            color: #1f2937;
-        }
-
-        .controls {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        input,
-        select,
-        button {
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-
-        button {
-            cursor: pointer;
-            background: #1f2937;
-            color: white;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background: #1f2937;
-            color: white;
-        }
-
-        .count {
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-    </style>
+    <link
+        rel="stylesheet"
+        href="/smart-campus/assets/css/app.css"
+    >
 
 </head>
 
 <body>
 
-    <h1>Smart Campus - Students</h1>
+<div class="layout">
 
-    <div class="controls">
-
-        <form method="GET">
-
-            <input
-                type="text"
-                name="search"
-                placeholder="Search student..."
-                value="<?= htmlspecialchars($search) ?>"
-            >
-
-            <select name="department">
-
-                <option value="">All Departments</option>
-
-                <option value="AIML" <?= $department === 'AIML' ? 'selected' : '' ?>>
-                    AIML
-                </option>
-
-                <option value="COMP" <?= $department === 'COMP' ? 'selected' : '' ?>>
-                    Computer Engineering
-                </option>
-
-                <option value="ENTC" <?= $department === 'ENTC' ? 'selected' : '' ?>>
-                    ENTC
-                </option>
-
-                <option value="MECH" <?= $department === 'MECH' ? 'selected' : '' ?>>
-                    Mechanical
-                </option>
-
-                <option value="CIVIL" <?= $department === 'CIVIL' ? 'selected' : '' ?>>
-                    Civil
-                </option>
-
-                <option value="ELEC" <?= $department === 'ELEC' ? 'selected' : '' ?>>
-                    Electrical
-                </option>
-
-                <option value="IT" <?= $department === 'IT' ? 'selected' : '' ?>>
-                    IT
-                </option>
-
-                <option value="SCI" <?= $department === 'SCI' ? 'selected' : '' ?>>
-                    Applied Sciences
-                </option>
-
-            </select>
+    <?php require_once __DIR__ . '/../includes/sidebar.php'; ?>
 
 
-            <select name="sort">
+    <main class="main">
 
-                <option value="name" <?= $sort === 'name' ? 'selected' : '' ?>>
-                    Sort by Name
-                </option>
+        <!-- PAGE HEADER -->
 
-                <option value="enrollment" <?= $sort === 'enrollment' ? 'selected' : '' ?>>
-                    Sort by Enrollment
-                </option>
+        <div class="page-header">
 
-                <option value="department" <?= $sort === 'department' ? 'selected' : '' ?>>
-                    Sort by Department
-                </option>
+            <div>
+                <div class="eyebrow">PEOPLE</div>
 
-                <option value="semester" <?= $sort === 'semester' ? 'selected' : '' ?>>
-                    Sort by Semester
-                </option>
+                <h2>Students</h2>
 
-            </select>
+                <p>
+                    Manage and explore registered campus students.
+                </p>
+            </div>
 
+            <div class="page-count">
 
-            <button type="submit">
-                Search
-            </button>
+                <strong><?= count($students) ?></strong>
 
-            <a href="index.php">
-                Reset
-            </a>
+                <span>students</span>
 
-        </form>
+            </div>
 
-    </div>
+        </div>
 
 
-    <div class="count">
+        <!-- FILTER BAR -->
 
-        Total Results: <?= count($students) ?>
+        <div class="filter-card">
 
-    </div>
+            <form method="GET" class="student-filters">
 
+                <div class="search-box">
 
-    <table>
+                    <span class="search-icon">⌕</span>
 
-        <thead>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search by name or enrollment..."
+                        value="<?= htmlspecialchars($search) ?>"
+                    >
 
-            <tr>
-                <th>ID</th>
-                <th>Enrollment No.</th>
-                <th>Student Name</th>
-                <th>Gender</th>
-                <th>Semester</th>
-                <th>Department</th>
-            </tr>
-
-        </thead>
+                </div>
 
 
-        <tbody>
+                <select name="department">
 
-            <?php if (count($students) > 0): ?>
+                    <option value="">All Departments</option>
 
-                <?php foreach ($students as $student): ?>
+                    <option value="AIML" <?= $department === 'AIML' ? 'selected' : '' ?>>
+                        AIML
+                    </option>
 
-                    <tr>
+                    <option value="COMP" <?= $department === 'COMP' ? 'selected' : '' ?>>
+                        Computer Engineering
+                    </option>
 
-                        <td>
-                            <?= htmlspecialchars($student['student_id']) ?>
-                        </td>
+                    <option value="ENTC" <?= $department === 'ENTC' ? 'selected' : '' ?>>
+                        ENTC
+                    </option>
 
-                        <td>
-                            <?= htmlspecialchars($student['enrollment_no']) ?>
-                        </td>
+                    <option value="MECH" <?= $department === 'MECH' ? 'selected' : '' ?>>
+                        Mechanical Engineering
+                    </option>
 
-                        <td>
-                            <?= htmlspecialchars($student['student_name']) ?>
-                        </td>
+                    <option value="CIVIL" <?= $department === 'CIVIL' ? 'selected' : '' ?>>
+                        Civil Engineering
+                    </option>
 
-                        <td>
-                            <?= htmlspecialchars($student['gender']) ?>
-                        </td>
+                    <option value="ELEC" <?= $department === 'ELEC' ? 'selected' : '' ?>>
+                        Electrical Engineering
+                    </option>
 
-                        <td>
-                            <?= htmlspecialchars($student['semester']) ?>
-                        </td>
+                    <option value="IT" <?= $department === 'IT' ? 'selected' : '' ?>>
+                        Information Technology
+                    </option>
 
-                        <td>
-                            <?= htmlspecialchars($student['department_name']) ?>
-                        </td>
+                    <option value="SCI" <?= $department === 'SCI' ? 'selected' : '' ?>>
+                        Applied Sciences
+                    </option>
 
-                    </tr>
+                </select>
 
-                <?php endforeach; ?>
 
-            <?php else: ?>
+                <select name="sort">
 
-                <tr>
+                    <option value="name" <?= $sort === 'name' ? 'selected' : '' ?>>
+                        Name
+                    </option>
 
-                    <td colspan="6">
-                        No students found.
-                    </td>
+                    <option value="enrollment" <?= $sort === 'enrollment' ? 'selected' : '' ?>>
+                        Enrollment
+                    </option>
 
-                </tr>
+                    <option value="department" <?= $sort === 'department' ? 'selected' : '' ?>>
+                        Department
+                    </option>
 
-            <?php endif; ?>
+                    <option value="semester" <?= $sort === 'semester' ? 'selected' : '' ?>>
+                        Semester
+                    </option>
 
-        </tbody>
+                </select>
 
-    </table>
+
+                <button type="submit" class="primary-button">
+                    Apply
+                </button>
+
+
+                <?php if ($search !== '' || $department !== '' || $sort !== 'name'): ?>
+
+                    <a href="index.php" class="reset-button">
+                        Reset
+                    </a>
+
+                <?php endif; ?>
+
+            </form>
+
+        </div>
+
+
+        <!-- STUDENT TABLE -->
+
+        <div class="table-card">
+
+            <div class="table-header">
+
+                <div>
+
+                    <h3>Student Directory</h3>
+
+                    <p>
+                        <?= count($students) ?>
+                        <?= count($students) === 1 ? 'student' : 'students' ?>
+                        found
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Enrollment</th>
+
+                            <th>Student</th>
+
+                            <th>Gender</th>
+
+                            <th>Semester</th>
+
+                            <th>Department</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <?php if (count($students) > 0): ?>
+
+                        <?php foreach ($students as $student): ?>
+
+                            <tr>
+
+                                <td>
+                                    <span class="student-id">
+                                        <?= htmlspecialchars($student['student_id']) ?>
+                                    </span>
+                                </td>
+
+
+                                <td>
+
+                                    <span class="enrollment">
+
+                                        <?= htmlspecialchars($student['enrollment_no']) ?>
+
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="student-cell">
+
+                                        <div class="avatar">
+
+                                            <?= strtoupper(
+                                                substr($student['student_name'], 0, 1)
+                                            ) ?>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                <?= htmlspecialchars($student['student_name']) ?>
+                                            </strong>
+
+                                            <span>
+                                                Semester <?= htmlspecialchars($student['semester']) ?>
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    <?= htmlspecialchars($student['gender']) ?>
+                                </td>
+
+
+                                <td>
+
+                                    <span class="semester-badge">
+
+                                        Sem <?= htmlspecialchars($student['semester']) ?>
+
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="department-badge">
+
+                                        <?= htmlspecialchars($student['department_name']) ?>
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
+
+                        <tr>
+
+                            <td colspan="6" class="empty-state">
+
+                                <div class="empty-icon">⌕</div>
+
+                                <strong>No students found</strong>
+
+                                <span>
+                                    Try changing your search or filters.
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endif; ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
 
 </body>
 
