@@ -1,28 +1,14 @@
-::: {align="center"}
 # 🏫 Smart Campus Resource Management System
 
 ### A centralized DBMS-powered platform for managing campus resources, facilities, bookings, maintenance and operations.
 
-```{=html}
-<p>
-```
-`<img src="https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">`{=html}
-`<img src="https://img.shields.io/badge/Backend-PHP%208.2-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">`{=html}
-`<img src="https://img.shields.io/badge/Server-XAMPP-F37623?style=for-the-badge&logo=xampp&logoColor=white" alt="XAMPP">`{=html}
-`<img src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="Frontend">`{=html}
-`<img src="https://img.shields.io/badge/Architecture-MVC--Inspired-8B5CF6?style=for-the-badge" alt="Architecture">`{=html}
-```{=html}
-</p>
-```
-```{=html}
-<p>
-```
-`<strong>`{=html}DBMS Microproject · MSBTE K-Scheme · Diploma in AI &
-ML`</strong>`{=html}
-```{=html}
-</p>
-```
-:::
+![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![PHP](https://img.shields.io/badge/Backend-PHP%208.2-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![XAMPP](https://img.shields.io/badge/Server-XAMPP-F37623?style=for-the-badge&logo=xampp&logoColor=white)
+![HTML](https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Git](https://img.shields.io/badge/Version%20Control-Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+**DBMS Microproject · MSBTE K-Scheme · Diploma in AI & ML**
 
 ------------------------------------------------------------------------
 
@@ -37,54 +23,51 @@ laboratories, computers, equipment, inventory, bookings, events,
 complaints and maintenance workflows through a structured relational
 database.
 
-Instead of treating every module as an isolated CRUD page, the project
-focuses on **relationships, constraints, data integrity, SQL querying
-and practical database management**.
+The project focuses on **relational design, data integrity, SQL
+querying, normalization and practical database management** rather than
+isolated CRUD operations.
 
 ------------------------------------------------------------------------
 
-## 🎯 Project Objectives
+## 🎯 Objectives
 
 -   🗄️ Design a normalized relational database for campus management
 -   🔗 Establish meaningful relationships using primary and foreign keys
--   🏫 Manage campus → building → floor → room hierarchy
+-   🏫 Manage the campus → building → floor → room hierarchy
 -   💻 Track laboratories, computers and equipment
 -   📦 Maintain inventory and inventory transactions
--   📅 Manage room bookings and event registrations
+-   📅 Manage room bookings and campus events
 -   🛠️ Track maintenance requests and technician assignments
--   📝 Handle campus complaints and technical issue logs
+-   📝 Handle complaints and internal issue logs
 -   🔎 Provide database-driven search, filtering and sorting
--   🧩 Demonstrate advanced DBMS concepts through views, procedures,
-    functions and transactions
+-   🧩 Demonstrate advanced DBMS features
 -   🖥️ Provide a clean web interface over the database
 
 ------------------------------------------------------------------------
 
-## 🧠 Core DBMS Concepts
-
-This project demonstrates practical implementation of:
+## 🧠 DBMS Concepts Covered
 
   Concept           Implementation
-  ----------------- --------------------------------------------
+  ----------------- ------------------------------------------
   Database Design   Relational campus resource model
-  Primary Keys      Every major entity has a unique identifier
-  Foreign Keys      Enforced relationships between modules
+  Primary Keys      Unique identifiers for entities
+  Foreign Keys      Enforced table relationships
   Constraints       `NOT NULL`, `UNIQUE`, `CHECK`, `DEFAULT`
-  Joins             Multi-table campus and resource queries
+  Joins             Multi-table resource queries
   Aggregation       `COUNT`, `GROUP BY`, `HAVING`
   Filtering         `WHERE`, `LIKE`, `IN`, `BETWEEN`, `NULL`
   Sorting           Database-side `ORDER BY`
-  Subqueries        Analytical and filtering queries
+  Subqueries        Filtering and analytical queries
   Views             Reusable database-level result sets
-  Indexes           Improved lookup and query performance
+  Indexes           Query performance
   Transactions      `COMMIT`, `ROLLBACK`, `SAVEPOINT`
   Stored Programs   Procedures and functions
-  Error Handling    MySQL/MariaDB stored-program handlers
+  Error Handling    MySQL/MariaDB handlers
   Normalization     Structured relational design
 
 ------------------------------------------------------------------------
 
-## 🏗️ System Architecture
+## 🏗️ Architecture
 
 The project follows a clean **MODULE / VIEW / CONTROL** architecture.
 
@@ -117,19 +100,13 @@ SMART_CAMPUS_RESOURCE_MANAGEMENT/
 
 ``` text
 User
-  │
-  ▼
-VIEW
-(PHP Frontend)
-  │
-  ▼
-CONTROL
-(Controllers + Validation)
-  │
-  ▼
+  ↓
+VIEW — PHP Frontend
+  ↓
+CONTROL — Controllers / Validation
+  ↓
 MySQL Database
-  │
-  ▼
+  ↓
 Relational Data
 ```
 
@@ -137,7 +114,7 @@ Relational Data
 
 ## 🗂️ Database Modules
 
-The database currently contains **24 interconnected tables**:
+The system contains **24 interconnected tables**.
 
     \# Table                      Purpose
   ---- -------------------------- -----------------------------------------
@@ -150,7 +127,7 @@ The database currently contains **24 interconnected tables**:
     07 `BUILDING`                 Campus buildings
     08 `FLOOR`                    Building floors
     09 `ROOM`                     Campus rooms
-    10 `LAB`                      Specialized laboratory rooms
+    10 `LAB`                      Specialized laboratories
     11 `COMPUTER`                 Lab computer assets
     12 `EQUIPMENT_CATEGORY`       Equipment classification
     13 `EQUIPMENT`                Physical equipment assets
@@ -163,7 +140,7 @@ The database currently contains **24 interconnected tables**:
     20 `MAINTENANCE_REQUEST`      Maintenance requests
     21 `MAINTENANCE_ASSIGNMENT`   Technician assignments
     22 `COMPLAINT`                User-submitted complaints
-    23 `ISSUE_LOG`                Internal technical issue history
+    23 `ISSUE_LOG`                Internal technical history
     24 `RESOURCE_ALLOCATION`      Long-term resource assignments
 
 ------------------------------------------------------------------------
@@ -172,53 +149,51 @@ The database currently contains **24 interconnected tables**:
 
 ``` text
 DEPARTMENT
-   ├── STUDENT
-   ├── FACULTY
-   ├── STAFF
-   ├── LAB
-   └── RESOURCE_ALLOCATION
+├── STUDENT
+├── FACULTY
+├── STAFF
+├── LAB
+└── RESOURCE_ALLOCATION
 
 CAMPUS
-   └── BUILDING
-        └── FLOOR
-             └── ROOM
-                  ├── LAB
-                  ├── BOOKING
-                  └── EQUIPMENT
+└── BUILDING
+    └── FLOOR
+        └── ROOM
+            ├── LAB
+            ├── BOOKING
+            └── EQUIPMENT
 
 LAB
-   └── COMPUTER
+└── COMPUTER
 
 EQUIPMENT_CATEGORY
-   └── EQUIPMENT
+└── EQUIPMENT
 
 BOOKING
-   └── BOOKING_RESOURCE
-        └── EQUIPMENT
+└── BOOKING_RESOURCE
+    └── EQUIPMENT
 
 EVENT
-   └── EVENT_REGISTRATION
-        └── STUDENT
+└── EVENT_REGISTRATION
+    └── STUDENT
 
 MAINTENANCE_REQUEST
-   └── MAINTENANCE_ASSIGNMENT
-        └── TECHNICIAN
+└── MAINTENANCE_ASSIGNMENT
+    └── TECHNICIAN
 ```
 
 ------------------------------------------------------------------------
 
 ## 🖥️ Web Interface
 
-The PHP frontend provides database-driven pages for campus resources.
-
-### Current Frontend Modules
+### Current Modules
 
 -   👨‍🎓 Students
 -   👨‍🏫 Faculty
 -   🏢 Buildings
 -   🚪 Rooms
 
-### Planned / In Progress
+### Upcoming Modules
 
 -   🧪 Labs
 -   💻 Computers
@@ -237,16 +212,16 @@ The PHP frontend provides database-driven pages for campus resources.
 -   Sorting
 -   Status badges
 -   Responsive tables
--   Shared navigation
+-   Shared sidebar navigation
 -   Centralized CSS
 -   Empty-state handling
--   Structured controller-based data retrieval
+-   Controller-based data retrieval
 
 ------------------------------------------------------------------------
 
-## 🧪 Sample Database Queries
+## 🧪 Sample SQL
 
-### Students with their departments
+### Students with departments
 
 ``` sql
 SELECT
@@ -316,7 +291,7 @@ ORDER BY total_students DESC;
 
 ## 🚀 Local Setup
 
-### 1. Clone the repository
+### 1. Clone
 
 ``` bash
 git clone https://github.com/BuiltByAdvait/smart-campus-resource-management.git
@@ -327,23 +302,20 @@ cd smart-campus-resource-management
 
 Start **Apache** using XAMPP.
 
-The project uses Apache for the PHP frontend while connecting to the
-MySQL database.
-
 ### 3. Create the database
 
-Open MySQL and execute the database creation/schema scripts from:
+Execute the database and schema scripts from:
 
 ``` text
 MODULE/DATABASE/
 MODULE/SCHEMA/
 ```
 
-Follow the project's dependency order when importing tables.
+Follow the dependency order when importing tables.
 
-### 4. Configure database connection
+### 4. Configure the connection
 
-Create/configure:
+Configure:
 
 ``` text
 CONTROL/db/connection.php
@@ -351,7 +323,7 @@ CONTROL/db/connection.php
 
 Use your local database credentials.
 
-> Do not commit database passwords or credentials to GitHub.
+> Never commit database passwords or credentials to GitHub.
 
 ### 5. Open the application
 
@@ -361,20 +333,7 @@ http://localhost/smart-campus/
 
 ------------------------------------------------------------------------
 
-## 📁 Development Workflow
-
-The project uses Git for team collaboration.
-
-``` text
-main
- │
- └── feature/<module>
-        │
-        ├── develop
-        └── testing
-```
-
-### Recommended workflow
+## 🌿 Git Workflow
 
 ``` bash
 git pull origin main
@@ -389,9 +348,10 @@ git commit -m "Add <module>"
 git push origin feature/your-module
 ```
 
-Before modifying shared schema or existing modules:
+Before modifying shared code or schema:
 
-> **Pull first. Check existing code. Then make changes.**
+> **Pull first → inspect existing code → make changes → test → commit →
+> push.**
 
 ------------------------------------------------------------------------
 
@@ -406,10 +366,10 @@ Before modifying shared schema or existing modules:
 
 ------------------------------------------------------------------------
 
-## 🔐 Project Safety Rules
+## 🔐 Project Rules
 
 -   Never commit `.env` files or database passwords
--   Do not modify the finalized database schema without team approval
+-   Do not modify the finalized schema without team approval
 -   Use prepared statements for user-controlled input
 -   Validate filter and sort parameters
 -   Keep database logic inside controllers
@@ -421,16 +381,13 @@ Before modifying shared schema or existing modules:
 
 ## 📌 Project Status
 
-::: {align="center"}
-### 🚧 Under Active Development
-
   Area                      Status
   ------------------------ --------
   Database Architecture       ✅
   Relational Schema           ✅
   Initial Dataset             ✅
   EER Design                  ✅
-  PHP-Control Layer           🟡
+  PHP Control Layer           🟡
   Student Module              ✅
   Faculty Module              ✅
   Buildings Module            ✅
@@ -439,7 +396,6 @@ Before modifying shared schema or existing modules:
   Complete Frontend           🟡
   Testing                     🟡
   Documentation               🟡
-:::
 
 ------------------------------------------------------------------------
 
@@ -450,16 +406,14 @@ Before modifying shared schema or existing modules:
 **Board:** MSBTE K-Scheme\
 **Program:** Diploma in Artificial Intelligence & Machine Learning
 
-The project is designed as a practical demonstration of relational
-database design, SQL, database constraints, normalization, querying,
-advanced DBMS features and database-backed application development.
+This project demonstrates relational database design, SQL, constraints,
+normalization, querying, advanced DBMS features and database-backed
+application development.
 
 ------------------------------------------------------------------------
 
-::: {align="center"}
-### 🏫 SMART CAMPUS
+## 🏫 Smart Campus
 
 **Manage Resources. Connect Data. Simplify Campus Operations.**
 
-Built as a DBMS Microproject with ❤️ by the Smart Campus team.
-:::
+Built with ❤️ by the Smart Campus team.
