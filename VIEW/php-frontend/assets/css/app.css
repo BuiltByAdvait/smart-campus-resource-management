@@ -966,3 +966,452 @@ button {
 .faculty-table .department-badge {
     white-space: nowrap;
 }
+
+/* =========================
+   BUILDINGS PAGE
+========================= */
+
+.building-filters {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 190px 190px 190px auto;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.building-filters input,
+.building-filters select {
+    width: 100%;
+    height: 42px;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.building-filters input:focus,
+.building-filters select:focus {
+    border-color: #a855f7;
+    background: var(--surface);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.apply-button {
+    height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 10px;
+    background: var(--text);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.apply-button:hover {
+    background: #273449;
+}
+
+.building-table-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.building-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+}
+
+.building-table th {
+    padding: 12px 18px;
+    background: #fbfcfe;
+    border-bottom: 1px solid var(--border);
+    color: #7c8798;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.building-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #f0f3f7;
+    color: #475569;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.building-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.building-table tbody tr:hover {
+    background: #faf8ff;
+}
+
+.building-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.building-id {
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.building-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.building-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: var(--primary-soft);
+    color: #9333ea;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.building-name {
+    color: var(--text);
+    font-weight: 750;
+}
+
+.building-code {
+    margin-top: 3px;
+    color: var(--text-light);
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.campus-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--primary-soft);
+    color: #7e22ce;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.resource-number {
+    color: var(--text);
+    font-weight: 800;
+}
+
+.resource-label {
+    margin-left: 4px;
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+@media (max-width: 1050px) {
+    .building-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .building-filters input {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .building-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .building-filters input {
+        grid-column: auto;
+    }
+
+    .apply-button {
+        width: 100%;
+    }
+}
+
+/* Building directory header spacing */
+.building-table-card .table-heading {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.building-table-card .table-heading h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.building-table-card .table-heading p {
+    margin: 5px 0 0;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* =========================
+   ROOMS PAGE
+========================= */
+
+.room-filters {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 180px 170px 170px 180px auto;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.room-filters input,
+.room-filters select {
+    width: 100%;
+    height: 42px;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.room-filters input:focus,
+.room-filters select:focus {
+    border-color: #a855f7;
+    background: var(--surface);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.room-table-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.room-directory-header {
+    padding: 18px 20px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.room-directory-header h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.room-directory-header p {
+    margin: 6px 0 0;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.room-table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+.room-table th {
+    padding: 13px 18px;
+    background: #fbfcfe;
+    border-bottom: 1px solid var(--border);
+    color: #7c8798;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.room-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #f0f3f7;
+    color: #475569;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.room-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.room-table tbody tr:hover {
+    background: #faf8ff;
+}
+
+.room-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.room-id {
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.room-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.room-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: var(--primary-soft);
+    color: #9333ea;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.room-name {
+    color: var(--text);
+    font-weight: 750;
+}
+
+.room-number {
+    margin-top: 3px;
+    color: var(--text-light);
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.room-building-name {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.room-campus {
+    margin-top: 3px;
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.floor-badge,
+.room-type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.floor-badge {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.room-type-badge {
+    background: var(--primary-soft);
+    color: #7e22ce;
+}
+
+.capacity-number {
+    color: var(--text);
+    font-weight: 800;
+}
+
+.capacity-label {
+    margin-left: 4px;
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.room-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+
+.status-available {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.status-occupied {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.status-maintenance {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.status-closed {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+@media (max-width: 1250px) {
+    .room-filters {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .room-filters input {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .room-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .room-filters input {
+        grid-column: auto;
+    }
+
+    .room-filters .apply-button {
+        width: 100%;
+    }
+}
