@@ -141,3 +141,9 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+CALL sp_get_building_rooms(1);
+
+CALL sp_get_room_details(1);
+
+CALL sp_get_building_summary(1);
