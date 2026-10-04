@@ -33,11 +33,11 @@ INSERT INTO STUDENT (
 ('IT001', 'Ishaan', 'Mehta', 'Male', '2007-09-04', 'ishaan.mehta@smartcampus.edu', '9876500015', 2024, 5, 7),
 ('IT002', 'Snehal', 'Desai', 'Female', '2007-01-28', 'snehal.desai@smartcampus.edu', '9876500016', 2024, 5, 7),
 
-('SCI001', 'Rahul', 'Verma', 'Male', '2007-05-30', 'rahul.verma@smartcampus.edu', '9876500017', 2024, 5, 8);
-
-
-DELETE FROM STUDENT;
-ALTER TABLE STUDENT AUTO_INCREMENT = 1;
+('SCI001', 'Rahul', 'Verma', 'Male', '2007-05-30', 'rahul.verma@smartcampus.edu', '9876500017', 2024, 5, 8)
+ON DUPLICATE KEY UPDATE
+    first_name = VALUES(first_name), last_name = VALUES(last_name), gender = VALUES(gender),
+    date_of_birth = VALUES(date_of_birth), email = VALUES(email), phone = VALUES(phone),
+    admission_year = VALUES(admission_year), semester = VALUES(semester), department_id = VALUES(department_id);
 
 SELECT
     student_id,

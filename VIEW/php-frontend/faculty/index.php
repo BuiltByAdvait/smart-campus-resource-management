@@ -15,7 +15,10 @@ $sort = $_GET['sort'] ?? 'name';
 |--------------------------------------------------------------------------
 */
 
-$faculty = require_once __DIR__ . '/../../../CONTROL/controllers/faculty_controller.php';
+require_once __DIR__ . '/../../../CONTROL/error-handling/application.php';
+$controllerResult = load_controller(__DIR__ . '/../../../CONTROL/controllers/faculty_controller.php');
+$faculty = $controllerResult['data'];
+$loadError = $controllerResult['error'];
 
 
 $currentPage = 'faculty';
@@ -59,6 +62,7 @@ $currentPage = 'faculty';
 
     <main class="main">
 
+        <?php if ($loadError): ?><div class="notice notice-error" role="alert"><?= h($loadError) ?></div><?php endif; ?>
 
         <!-- PAGE HEADER -->
 

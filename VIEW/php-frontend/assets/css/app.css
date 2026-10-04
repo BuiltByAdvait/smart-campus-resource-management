@@ -67,6 +67,19 @@ button {
     cursor: pointer;
 }
 
+.notice {
+    margin: 0 0 20px;
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+}
+
+.notice-error {
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
 
 /* =========================
    APPLICATION LAYOUT
@@ -387,7 +400,12 @@ button {
     margin-bottom: 28px;
 }
 
-.eyebrow {
+.page-content {
+    width: 100%;
+}
+
+.eyebrow,
+.page-eyebrow {
     color: var(--primary);
 
     font-size: 11px;
@@ -399,15 +417,23 @@ button {
     margin-bottom: 7px;
 }
 
-.page-header h2 {
+.page-header h2,
+.page-title {
     font-size: 30px;
 
     line-height: 1.1;
 
     letter-spacing: -1px;
+
+    font-weight: 800;
 }
 
-.page-header p {
+.page-title {
+    margin: 0;
+}
+
+.page-header p,
+.page-subtitle {
     color: var(--text-muted);
 
     font-size: 14px;
@@ -463,6 +489,155 @@ button {
 
     width: 100%;
 }
+
+.directory-filters {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) repeat(5, minmax(145px, 180px)) auto auto;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 18px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.directory-filters input,
+.directory-filters select {
+    width: 100%;
+    height: 42px;
+    padding: 0 13px;
+    color: var(--text);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.directory-filters input:focus,
+.directory-filters select:focus {
+    border-color: #a855f7;
+    background: var(--surface);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.directory-filters .reset-button {
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.directory-filters .reset-button:hover {
+    border-color: #c4b5fd;
+    background: #faf8ff;
+    color: var(--text);
+}
+
+.directory-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.directory-table th {
+    padding: 13px 18px;
+    background: #fbfcfe;
+    border-bottom: 1px solid var(--border);
+    color: #7c8798;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-align: left;
+    text-transform: uppercase;
+    width: auto;
+    white-space: nowrap;
+}
+
+.directory-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #f0f3f7;
+    color: #475569;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.directory-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.directory-table tbody tr:hover {
+    background: #faf8ff;
+}
+
+.directory-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.directory-table-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.directory-header {
+    padding: 18px 20px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.directory-header h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.directory-header p {
+    margin: 6px 0 0;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #f3e8ff;
+    color: #6d28d9;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.date-value {
+    white-space: nowrap;
+}
+
+.status-open, .status-high, .status-critical, .status-faulty, .status-out-of-stock, .status-needs-repair { background: #fef2f2; color: #b91c1c; }
+.status-in-progress, .status-under-maintenance, .status-low-stock, .status-pending, .status-medium { background: #fff7ed; color: #c2410c; }
+.status-resolved, .status-closed, .status-working, .status-active, .status-available, .status-confirmed, .status-good, .status-in-stock, .status-completed, .status-low { background: #ecfdf5; color: #047857; }
+.status-planned, .status-faculty { background: #eff6ff; color: #1d4ed8; }
+.status-ongoing { background: #fef3c7; color: #b45309; }
+.status-in-use, .status-student { background: #f3e8ff; color: #6d28d9; }
+.status-cancelled, .status-rejected, .status-retired, .status-scrapped, .status-inactive { background: #f1f5f9; color: #64748b; }
 
 .search-box {
     position: relative;
@@ -1413,5 +1588,25 @@ button {
 
     .room-filters .apply-button {
         width: 100%;
+    }
+
+    .directory-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .directory-filters .apply-button,
+    .directory-filters .reset-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+    .directory-filters {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .directory-filters input[type="text"] {
+        grid-column: 1 / -1;
     }
 }

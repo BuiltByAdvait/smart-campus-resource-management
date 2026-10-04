@@ -186,15 +186,12 @@ MAINTENANCE_REQUEST
 
 ## 🖥️ Web Interface
 
-### Current Modules
+### Available PHP Modules
 
 -   👨‍🎓 Students
 -   👨‍🏫 Faculty
 -   🏢 Buildings
 -   🚪 Rooms
-
-### Upcoming Modules
-
 -   🧪 Labs
 -   💻 Computers
 -   🔧 Equipment
@@ -203,7 +200,7 @@ MAINTENANCE_REQUEST
 -   🎪 Events
 -   🛠️ Maintenance
 -   📝 Complaints
--   📊 Dashboard
+-   📊 Database-driven dashboard
 
 ### UI Features
 
@@ -311,17 +308,38 @@ MODULE/DATABASE/
 MODULE/SCHEMA/
 ```
 
-Follow the dependency order when importing tables.
+The repository uses numbered paths named `MODULE/01_DATABASE/`,
+`MODULE/02_SCHEMA/`, and `MODULE/03_DATA/`; import each directory in numeric
+order. Then import the views, procedures, functions, indexes, queries and
+testing scripts. Run `MODULE/04_QUERIES/indexes.sql` once, after the schema is
+created.
+
+### Verification
+
+Use `MODULE/09_TESTING/01_database_validation.sql` after import. It verifies
+table visibility, key relationship orphans, views, functions, the cursor-based
+report and an indexed booking query. `MODULE/08_TRANSACTIONS/` contains a
+savepoint and rollback demonstration that does not persist changes to seed data.
+
+### Advanced DBMS Artefacts
+
+- `MODULE/05_VIEWS/01_views.sql`: dashboard, room directory, lab/computer and maintenance views
+- `MODULE/06_PROCEDURES/`: building reports, validated room lookup/error handler and low-stock cursor report
+- `MODULE/07_FUNCTIONS/`: department student count and room resource count functions
+- `MODULE/08_TRANSACTIONS/`: `START TRANSACTION`, `SAVEPOINT`, `ROLLBACK TO SAVEPOINT`, `COMMIT`, and `ROLLBACK`
+- `MODULE/04_QUERIES/`: joins, aggregates, `HAVING`, `IN`, `BETWEEN`, `LIKE`, subquery, `UNION`, and indexes
 
 ### 4. Configure the connection
 
-Configure:
+Copy the tracked template and configure:
 
 ``` text
 CONTROL/db/connection.php
 ```
 
-Use your local database credentials.
+`CONTROL/db/connection.example.php` documents the supported environment
+variables. The real connection file remains ignored so credentials are not
+committed.
 
 > Never commit database passwords or credentials to GitHub.
 

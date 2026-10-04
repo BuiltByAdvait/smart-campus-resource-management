@@ -4,7 +4,10 @@ $search = $_GET['search'] ?? '';
 $department = $_GET['department'] ?? '';
 $sort = $_GET['sort'] ?? 'name';
 
-$students = require_once __DIR__ . '/../../../CONTROL/controllers/student_controller.php';
+require_once __DIR__ . '/../../../CONTROL/error-handling/application.php';
+$controllerResult = load_controller(__DIR__ . '/../../../CONTROL/controllers/student_controller.php');
+$students = $controllerResult['data'];
+$loadError = $controllerResult['error'];
 
 $currentPage = 'students';
 
@@ -63,6 +66,8 @@ $currentPage = 'students';
 
 
         <!-- FILTER BAR -->
+
+        <?php if ($loadError): ?><div class="notice notice-error" role="alert"><?= h($loadError) ?></div><?php endif; ?>
 
         <div class="filter-card">
 

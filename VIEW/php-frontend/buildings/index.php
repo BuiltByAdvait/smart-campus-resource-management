@@ -3,7 +3,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$data = require_once __DIR__ . '/../../../CONTROL/controllers/building_controller.php';
+require_once __DIR__ . '/../../../CONTROL/error-handling/application.php';
+$controllerResult = load_controller(__DIR__ . '/../../../CONTROL/controllers/building_controller.php');
+$data = $controllerResult['data'] ?: ['buildings' => [], 'campuses' => [], 'building_types' => []];
+$loadError = $controllerResult['error'];
 
 $buildings = $data['buildings'];
 $campuses = $data['campuses'];
@@ -40,6 +43,8 @@ function e($value)
 <?php require_once __DIR__ . '/../includes/sidebar.php'; ?>
 
 <main class="main">
+
+    <?php if ($loadError): ?><div class="notice notice-error" role="alert"><?= h($loadError) ?></div><?php endif; ?>
 
     <div class="page-content">
 

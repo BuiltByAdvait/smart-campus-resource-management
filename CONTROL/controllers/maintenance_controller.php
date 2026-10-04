@@ -10,15 +10,14 @@ $allowedSorts = [
     'date' => 'mr.request_date',
     'priority' => 'mr.priority',
     'status' => 'mr.request_status',
-    'type' => 'mr.request_type'
+    'resource' => 'resource_name'
 ];
 
 $orderBy = $allowedSorts[$sort] ?? 'mr.request_date';
 
 $sql = "SELECT
-            mr.maintenance_request_id,
-            mr.request_type,
-            mr.description,
+            mr.request_id,
+            mr.issue_description,
             mr.priority,
             mr.request_date,
             mr.request_status,
@@ -42,8 +41,8 @@ $sql = "SELECT
                 CONCAT(f.first_name, ' ', f.last_name)
             ) AS reported_by,
             CASE
-                WHEN mr.student_id IS NOT NULL THEN 'STUDENT'
-                WHEN mr.faculty_id IS NOT NULL THEN 'FACULTY'
+                WHEN mr.reported_by_student_id IS NOT NULL THEN 'STUDENT'
+                WHEN mr.reported_by_faculty_id IS NOT NULL THEN 'FACULTY'
                 ELSE NULL
             END AS reporter_type,
             ma.technician_id,
@@ -51,14 +50,15 @@ $sql = "SELECT
             t.specialization AS technician_specialization,
             ma.assigned_date,
             ma.completed_date,
-            ma.remarks AS assignment_remarks
+            ma.work_description AS assignment_remarks,
+            ma.assignment_status
         FROM MAINTENANCE_REQUEST mr
         LEFT JOIN COMPUTER c ON mr.computer_id = c.computer_id
         LEFT JOIN EQUIPMENT e ON mr.equipment_id = e.equipment_id
-        LEFT JOIN STUDENT s ON mr.student_id = s.student_id
-        LEFT JOIN FACULTY f ON mr.faculty_id = f.faculty_id
+        LEFT JOIN STUDENT s ON mr.reported_by_student_id = s.student_id
+        LEFT JOIN FACULTY f ON mr.reported_by_faculty_id = f.faculty_id
         LEFT JOIN MAINTENANCE_ASSIGNMENT ma
-            ON mr.maintenance_request_id = ma.maintenance_request_id
+            ON mr.request_id = ma.request_id
         LEFT JOIN TECHNICIAN t ON ma.technician_id = t.technician_id
         WHERE 1=1";
 
@@ -67,8 +67,7 @@ $types = '';
 
 if ($search !== '') {
     $sql .= " AND (
-        mr.request_type LIKE ?
-        OR mr.description LIKE ?
+        mr.issue_description LIKE ?
         OR c.asset_tag LIKE ?
         OR e.asset_tag LIKE ?
         OR e.equipment_name LIKE ?
@@ -76,10 +75,10 @@ if ($search !== '') {
         OR t.last_name LIKE ?
     )";
     $term = "%{$search}%";
-    for ($i = 0; $i < 7; $i++) {
+    for ($i = 0; $i < 6; $i++) {
         $params[] = $term;
     }
-    $types .= 'sssssss';
+    $types .= 'ssssss';
 }
 
 if ($priority !== '') {
